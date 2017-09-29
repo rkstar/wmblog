@@ -5,7 +5,12 @@
 @value desktop: 1280px;
 @value tablet: 960px;
 @value colors './colors.css';
-@value black, white, seafoam, darkGreen from colors;
+@value black, white, seafoam, green from colors;
+
+:global(html) {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 :global(body) {
   font-family: 'Roboto', sans-serif;
