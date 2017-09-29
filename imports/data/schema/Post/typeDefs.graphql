@@ -1,0 +1,31 @@
+type Post {
+  _id: ID!
+  author: User!
+  tags: [Tag]
+  likes: [User]
+  comments: [Comment]
+  title: String!
+  contenxt: String!
+  datePosted: DateTime
+  lastUpdated: DateTime
+}
+
+type PostInput {
+  tags: [Tag]
+  title: String!
+  content: String!
+}
+
+extend type Query {
+  getPost(id: ID!): Post!
+  getPosts(sort: SortOption, order: OrderOption): [Post!]!
+  getComments(id: ID!, sort: SortOption, order: OrderOption): [Comment!]!
+}
+
+extend type Mutation {
+  addPost(post: PostInput!): Post!
+  editPost(id: ID!, post: PostInput!): Post!
+  deletePost(id: ID!): Boolean!
+  bookmarkPost(id: ID!): Boolean!
+  unbookmarkPost(id: ID!): Boolean!
+}
