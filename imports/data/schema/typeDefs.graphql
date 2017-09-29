@@ -1,3 +1,14 @@
+enum SortOption {
+  DATE
+  LIKES
+  COMMENTS
+
+
+enum OrderOption {
+  ASC
+  DESC
+}
+
 type Query {
 
 }
