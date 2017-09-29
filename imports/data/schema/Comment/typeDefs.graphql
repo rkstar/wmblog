@@ -1,0 +1,14 @@
+type Comment {
+  _id: ID!
+  author: User!
+  post: Post!
+  content: String!
+  datePosted: DateTime
+  lastUpdated: DateTime
+}
+
+extend type Mutation {
+  addComment(id: ID!, content: String!): Comment!
+  editComment(id: ID!, content: String!): Comment!
+  deleteComment(id: ID!): Boolean!
+}
