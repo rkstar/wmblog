@@ -1,0 +1,43 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,700);
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+
+/* responsive breakpoints */
+@value desktop: 1280px;
+@value tablet: 960px;
+@value colors './colors.css';
+@value black, white, seafoam, darkGreen from colors;
+
+:global(body) {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: black;
+}
+
+:global(main) {
+  padding-bottom: 5em;
+  min-height: 100vh;
+  max-width: 100vw;
+}
+
+:global(.bottom-nav) {
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1000;
+  width: 100vw;
+  max-width: 100vw;
+}
+
+:global(img) {
+  max-width: 100%;
+}
+
+@media (min-width: desktop) {
+  :global(.bottom-nav) {
+    display: none;
+  }
+}
