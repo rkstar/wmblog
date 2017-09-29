@@ -23,3 +23,4 @@ apollo
 dynamic-import@0.1.3
 accounts-base@1.3.3
 nathantreid:css-modules
+swydo:graphql
