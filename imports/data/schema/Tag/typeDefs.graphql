@@ -1,0 +1,16 @@
+type Tag {
+  tag: ID!
+  dateAdded: DateTime
+  posts: [Post]
+}
+
+extend type Query {
+  getTag(tag: ID!): Tag!
+  getTags(sort: SortOption, order: OrderOption): [Tag!]!
+  findTag(input: String!): [Tag]
+}
+
+extend type Mutation {
+  addTag(tag: ID!): Tag!
+  deleteTag(tag: ID!): Boolean!
+}
