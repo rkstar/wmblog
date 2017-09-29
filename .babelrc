@@ -4,8 +4,6 @@
     "react"
   ],
   "plugins": [
-    "transform-es2015-modules-commonjs",
-    "babel-root-slash-import",
-    "transform-runtime"
+    "babel-root-slash-import"
   ]
 }
