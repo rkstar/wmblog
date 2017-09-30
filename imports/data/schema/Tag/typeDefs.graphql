@@ -5,8 +5,8 @@ type Tag {
 }
 
 extend type Query {
-  getTag(tag: ID!): Tag!
-  getTags(sort: SortOption, order: OrderOption): [Tag!]!
+  tag(tag: ID!): Tag!
+  tags(sort: SortOption, order: OrderOption): [Tag!]!
   findTag(input: String!): [Tag]
 }
 

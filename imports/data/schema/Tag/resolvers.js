@@ -1,20 +1,22 @@
-export const Query = { Tag: {
+export const Tag = {
   async posts(__, props, context) {
 
   },
+};
 
-  async getTag(__, props, context) {
+export const Query = {
+  async tag(__, props, context) {
 
   },
 
-  async getTags(__, props, context) {
+  async tags(__, props, context) {
 
   },
 
   async findTag(__, props, context) {
 
   },
-}};
+};
 
 export const Mutation = {
   async addTag(__, props, context) {

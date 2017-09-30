@@ -8,22 +8,14 @@ import Tag from './Tag';
 import Post from './Post';
 import Comment from './Comment';
 
-export const typeDefs = [globalTypeDefs.loc.source.body];
-export const resolvers = [];
-[
+const domains = [
   DateTime,
   User,
   Tag,
   Post,
   Comment,
-].forEach(({ types, res }) => {
-  typeDefs.push(types.loc.source.body);
-  resolvers.push(res);
-});
+];
 
-export const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers: merge(...resolvers),
-});
-
-export default schema;
+export const typeDefs = [globalTypeDefs.loc.source.body, ...domains.map(({ typeDefs }) => typeDefs.loc.source.body)];
+export const resolvers = merge(...domains.map(({ resolvers }) => resolvers));
+export default makeExecutableSchema({ typeDefs, resolvers });

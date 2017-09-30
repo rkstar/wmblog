@@ -1,4 +1,4 @@
-export const Query = { Post: {
+export const Post = {
   async author(__, props, context) {
 
   },
@@ -14,19 +14,21 @@ export const Query = { Post: {
   async comments(__, props, context) {
 
   },
+};
 
-  async getPost(__, props, context) {
-
-  },
-
-  async getPosts(__, props, context) {
+export const Query = {
+  async post(__, props, context) {
 
   },
 
-  async getComments(__, props, context) {
+  async posts(__, props, context) {
 
   },
-}};
+
+  async comments(__, props, context) {
+
+  },
+};
 
 export const Mutation = {
   async addPost(__, props, context) {
@@ -41,7 +43,7 @@ export const Mutation = {
 
   },
 
-  async boomarkPost(__, props, context) {
+  async bookmarkPost(__, props, context) {
 
   },
 

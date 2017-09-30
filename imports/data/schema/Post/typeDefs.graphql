@@ -10,16 +10,16 @@ type Post {
   lastUpdated: DateTime
 }
 
-type PostInput {
-  tags: [Tag]
+input PostInput {
+  tags: [String]
   title: String!
   content: String!
 }
 
 extend type Query {
-  getPost(id: ID!): Post!
-  getPosts(sort: SortOption, order: OrderOption): [Post!]!
-  getComments(id: ID!, sort: SortOption, order: OrderOption): [Comment!]!
+  post(id: ID!): Post!
+  posts(sort: SortOption, order: OrderOption): [Post!]!
+  comments(id: ID!, sort: SortOption, order: OrderOption): [Comment!]!
 }
 
 extend type Mutation {

@@ -1,6 +1,3 @@
-export const Query = { Comment: {
-}};
-
 export const Mutation = {
   async addComment(__, props, context) {
 

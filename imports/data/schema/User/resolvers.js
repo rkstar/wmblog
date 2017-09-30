@@ -1,4 +1,4 @@
-export const Query = { User: {
+export const User = {
   async posts(__, props, context) {
 
   },
@@ -10,15 +10,22 @@ export const Query = { User: {
   async bookmarks(__, props, context) {
 
   },
+};
 
-  async getUsers(__, props, context) {
+
+export const Query = {
+  async users(__, props, context) {
 
   },
 
-  async getUser(__, props, context) {
+  async user(__, props, context) {
 
   },
-}};
+
+  async me(__, props, context) {
+    return context.user;
+  },
+};
 
 export const Mutation = {
   async editUser(__, props, context) {

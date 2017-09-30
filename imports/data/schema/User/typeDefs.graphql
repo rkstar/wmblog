@@ -9,14 +9,15 @@ type User {
   bookmarks: [Post]
 }
 
-type UserInput {
+input UserInput {
   name: String!
   avatar: String
 }
 
 extend type Query {
-  getUsers(sort: SortOption, order: OrderOption): [User!]!
-  getUser(id: ID!): User!
+  users(sort: SortOption, order: OrderOption): [User!]!
+  user(id: ID!): User!
+  me: User!
 }
 
 extend type Mutation {

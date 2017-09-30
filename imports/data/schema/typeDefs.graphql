@@ -10,9 +10,14 @@ enum OrderOption {
 }
 
 type Query {
-
+  dummy: String
 }
 
 type Mutation {
+  editDummy: String
+}
 
+schema {
+  query: Query
+  mutation: Mutation
 }
