@@ -10,7 +10,7 @@ import { lifecycle, compose } from 'recompose';
 import App from './App';
 import createContext from './styles.js';
 
-// const apolloClient = new ApolloClient(meteorClientConfig());
+const apolloClient = new ApolloClient(meteorClientConfig());
 const context = createContext();
 const styles = theme => ({
   "@global": {
@@ -21,9 +21,11 @@ const styles = theme => ({
 });
 
 const RootComponent = () => (
-  <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
-    <App />
-  </MuiThemeProvider>
+  <ApolloClient client={apolloClient}>
+    <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
+      <App />
+    </MuiThemeProvider>
+  </ApolloClient>
 );
 
 const WiredUpApp = compose(
