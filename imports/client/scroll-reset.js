@@ -2,7 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { withPropsOnChange, compose } from 'recompose';
 
-export default () => Component => props => compose(
+const ScrollReset = ({ children }) => children;
+
+export default compose(
   withRouter,
-  withPropsOnChange(['location'], () => window.scrollTo(0,0)),
-)(<Component {...props} />);
+  withPropsOnChange(['location'], () => window.scrollTo(0, 0)),
+)(ScrollReset);
