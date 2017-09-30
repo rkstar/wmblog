@@ -2,15 +2,13 @@ import { create } from 'jss';
 import preset from 'jss-preset-default';
 import { SheetsRegistry } from 'react-jss/lib/jss';
 import { createMuiTheme } from 'material-ui/styles';
+import { green, orange } from 'material-ui/colors';
 import createGenerateClassName from 'material-ui/styles/createGenerateClassName';
-
-const seafoam = '#00cdbe';
-const green = '#004d47';
 
 const theme = createMuiTheme({
   palette: {
-    primary: seafoam,
-    secondary: green,
+    primary: green,
+    secondary: orange,
   },
 });
 
