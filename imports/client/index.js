@@ -8,11 +8,9 @@ import { ApolloProvider } from 'react-apollo';
 import { lifecycle, compose } from 'recompose';
 
 import App from './App';
-import store from '../store';
-import scrollReset from './scroll-reset';
 import createContext from './styles.js';
 
-const apolloClient = new ApolloClient(meteorClientConfig());
+// const apolloClient = new ApolloClient(meteorClientConfig());
 const context = createContext();
 const styles = theme => ({
   "@global": {
@@ -23,17 +21,12 @@ const styles = theme => ({
 });
 
 const RootComponent = () => (
-  <ApolloProvider client={apolloClient}>
-    <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
-      <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
-        <App />
-      </MuiThemeProvider>
-    </JssProvider>
-  </ApolloProvider>
+  <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
+    <App />
+  </MuiThemeProvider>
 );
 
 const WiredUpApp = compose(
-  scrollReset,
   withStyles(styles),
   lifecycle({
     componentDidMount() {
