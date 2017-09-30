@@ -10,6 +10,4 @@ createApolloServer(req => ({
   context: {
     user: Meteor.user(),
   },
-}), {
-  configServer: graphQLServer => graphQLServer.use('/graph'),
-});
+}));
