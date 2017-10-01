@@ -4,10 +4,7 @@ import { formatError } from 'apollo-errors';
 
 import schema from '../../data/schema';
 
-createApolloServer(req => ({
+createApolloServer({
   schema,
   formatError,
-  context: {
-    user: Meteor.user(),
-  },
-}));
+});
