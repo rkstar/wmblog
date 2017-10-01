@@ -20,7 +20,7 @@ const labelStyle = {
 export default () => (
   <main className={classes.layout}>
     <img src="/img/weedmaps-logo.png" className={classes.logo} alt="WeedMaps logo" />
-    <section>
+    <section className={classes.buttonContainer}>
       <RaisedButton
         {...buttonProps}
         backgroundColor={Colors.social.twitter.blue}
