@@ -34,6 +34,6 @@ export default compose(
     ...props,
     loggingIn: Meteor.loggingIn(),
     loggingOut: Meteor.loggingOut(),
-    user: Meteor.user(),
+    user: { ...Meteor.user(), id: Meteor.userId() },
   })),
 )(AuthenticatedRoute);
