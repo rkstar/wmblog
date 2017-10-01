@@ -21,11 +21,13 @@ const styles = theme => ({
 });
 
 const RootComponent = () => (
-  <ApolloClient client={apolloClient}>
-    <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
-      <App />
-    </MuiThemeProvider>
-  </ApolloClient>
+  <ApolloProvider client={apolloClient}>
+    <JssProvider registry={context.sheetsRegistry} jss={context.jss}>
+      <MuiThemeProvider theme={context.theme} sheetsManager={context.sheetsManager}>
+        <App />
+      </MuiThemeProvider>
+    </JssProvider>
+  </ApolloProvider>
 );
 
 const WiredUpApp = compose(
