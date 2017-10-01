@@ -15,16 +15,19 @@ export default () => (
   <BrowserRouter>
     <ScrollReset>
       <Switch>
+        <Route path="/error" component={ErrorScreen} />
+        <Route exact path="/login" component={Login} />
+
         <div>
-          <Route exact path="/" component={Feed} />
-          <AuthenticatedRoute exact path="/bookmarks" component={Bookmarks} />
-          <AuthenticatedRoute exact path="/likes" component={Likes} />
-          <AuthenticatedRoute path="/profile" component={Profile} />
+          <Switch>
+            <Route exact path="/" component={Feed} />
+            <AuthenticatedRoute exact path="/bookmarks" component={Bookmarks} />
+            <AuthenticatedRoute exact path="/likes" component={Likes} />
+            <AuthenticatedRoute path="/profile" component={Profile} />
+          </Switch>
           <BottomMenu />
         </div>
 
-        <Route path="/error" component={ErrorScreen} />
-        <Route exact path="/login" component={Login} />
         <Redirect to="/error/404" />
       </Switch>
     </ScrollReset>
