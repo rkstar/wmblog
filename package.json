@@ -26,7 +26,8 @@
     "react-jss": "^7.2.0",
     "react-loadable": "^4.0.5",
     "react-router-dom": "^4.2.2",
-    "recompose": "^0.25.1"
+    "recompose": "^0.25.1",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
