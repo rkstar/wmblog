@@ -21,6 +21,7 @@
     "moment": "^2.18.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "react-addons-pure-render-mixin": "^15.6.2",
     "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0",
     "react-jss": "^7.2.0",
