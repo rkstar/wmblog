@@ -14,7 +14,7 @@ const BottomNav = ({ selectedNavItem, selectNavItem, history }) => (
         label="Feed"
         icon={Icons.drawFontIcon(Icons.share)}
         onClick={() => {
-          selectNavItem(1);
+          selectNavItem(0);
           history.push('/');
         }}
       />
@@ -22,7 +22,7 @@ const BottomNav = ({ selectedNavItem, selectNavItem, history }) => (
         label="Bookmarks"
         icon={Icons.drawFontIcon(Icons.bookmark)}
         onClick={() => {
-          selectNavItem(2);
+          selectNavItem(1);
           history.push('/bookmarks');
         }}
       />
@@ -30,7 +30,7 @@ const BottomNav = ({ selectedNavItem, selectNavItem, history }) => (
         label="Likes"
         icon={Icons.drawFontIcon(Icons.heart)}
         onClick={() => {
-          selectNavItem(3);
+          selectNavItem(2);
           history.push('/likes');
         }}
       />
@@ -38,7 +38,7 @@ const BottomNav = ({ selectedNavItem, selectNavItem, history }) => (
         label="Profile"
         icon={Icons.drawFontIcon(Icons.profile)}
         onClick={() => {
-          selectNavItem(4);
+          selectNavItem(3);
           history.push('/profile');
         }}
       />
