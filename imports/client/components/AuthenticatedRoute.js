@@ -1,33 +1,39 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
 import { Route, Redirect } from 'react-router-dom';
 import { compose } from 'recompose';
 
 const AuthenticatedRoute = ({
   component: Component,
   loggingIn,
-  loggedIn,
   loggingOut,
-  ...rest
+  user,
+  ...props,
 }) => (
   <Route
-    render={(props) => {
+    render={(routeProps) => {
       if (loggingIn) {
         return <div>Loading...</div>;
       }
       if (loggingOut) {
-        return <div>Seeya...!</div>;
+        return <div>Bye...</div>;
       }
 
-      return loggedIn ? <Component {...props} {...rest} /> : <Redirect to="/" />;
+      return user ? (
+        <Component user={user} {...props} {...routeProps} />
+      ) : (
+        <Redirect to="/login" />
+      );
     }}
   />
 );
 
 export default compose(
-  connect(
-    // mapStateToProps,
-    ({ auth: { loggingIn, loggingOut, loggedIn } }) => ({ loggingIn, loggingOut, loggedIn }),
-    // mapDispatchToProps,
-    dispatch => ({ actions: bindActionCreators({ logout }, dispatch) }),
-  ),
+  withTracker(props => ({
+    ...props,
+    loggingIn: Meteor.loggingIn(),
+    loggingOut: Meteor.loggingOut(),
+    user: Meteor.user(),
+  })),
 )(AuthenticatedRoute);
