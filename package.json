@@ -2,7 +2,7 @@
   "name": "blog",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor --settings settings.json"
   },
   "dependencies": {
     "apollo-client": "^1.9.3",
