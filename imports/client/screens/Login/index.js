@@ -1,5 +1,7 @@
-import { Meteor } from 'meteor/meteor';
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Redirect } from 'react-router-dom';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Icons } from '../../theme/icons';
 import { Colors } from '../../theme/colors';
@@ -17,7 +19,7 @@ const labelStyle = {
   fontWeight: 700,
 };
 
-export default () => (
+const LoginForm = () => (
   <main className={classes.layout}>
     <img src="/img/weedmaps-logo.png" className={classes.logo} alt="WeedMaps logo" />
     <section className={classes.buttonContainer}>
@@ -52,3 +54,17 @@ export default () => (
     </section>
   </main>
 );
+
+const Login = ({ loggingIn, user }) => {
+  if (loggingIn) {
+    return <div>Loading...</div>;
+  }
+
+  return user ? <Redirect to="/" /> : <LoginForm />;
+};
+
+export default withTracker(props => ({
+  ...props,
+  loggingIn: Meteor.loggingIn(),
+  user: { ...Meteor.user(), id: Meteor.userId() },
+}))(Login);
