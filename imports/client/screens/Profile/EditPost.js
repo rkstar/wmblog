@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { withReducer, withProps, compose } from 'recompose';
@@ -16,6 +17,7 @@ const EditPost = ({
     post,
     loading,
   },
+  history,
 }) => loading ? (
   <div>Loading...</div>
 ) : (
@@ -41,12 +43,15 @@ const EditPost = ({
       primary
       label="Save"
       icon={Icons.drawFontIcon(Icons.save)}
-      onClick={() => editPost({
-        variables: {
-          id: postId,
-          post: { ...state },
-        },
-      })}
+      onClick={() => {
+        editPost({
+          variables: {
+            id: postId,
+            post: { ...state },
+          },
+        });
+        history.push('/profile');
+      }}
     />
   </main>
 );
@@ -57,6 +62,7 @@ const initialState = {
 };
 
 export default compose(
+  withRouter,
   withProps(props => ({
     postId: props.match.params.id,
   })),

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import { withReducer, compose } from 'recompose';
@@ -6,7 +7,7 @@ import { Icons } from '/imports/client/theme/icons';
 import { inputStyle, textareaStyle, hintStyle } from './style';
 import addPostMutation from '../../data/mutations/addPost';
 
-const WritePost = ({ addPost, dispatch, state }) => (
+const WritePost = ({ addPost, dispatch, state, history }) => (
   <main>
     <TextField
       hintText="An interesting title makes all the difference."
@@ -29,9 +30,12 @@ const WritePost = ({ addPost, dispatch, state }) => (
       primary
       label="Save"
       icon={Icons.drawFontIcon(Icons.save)}
-      onClick={() => addPost({
-        variables: { post: { ...state } },
-      })}
+      onClick={() => {
+        addPost({
+          variables: { post: { ...state } },
+        });
+        history.push('/profile');
+      }}
     />
   </main>
 );
@@ -42,6 +46,7 @@ const initialState = {
 };
 
 export default compose(
+  withRouter,
   addPostMutation,
   withReducer('state', 'dispatch', (state, action) => ({
     ...state,
