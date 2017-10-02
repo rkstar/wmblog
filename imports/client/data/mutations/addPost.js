@@ -4,14 +4,20 @@ import gql from 'graphql-tag';
 export default graphql(gql`
   mutation addPost($post: PostInput!) {
     addPost(post: $post) {
-      _id
-      title
-      content
-      datePosted
+      _id,
       author {
         _id
         name
       }
+      bookmarks {
+        _id
+      }
+      likes {
+        _id
+      }
+      datePosted
+      title
+      content
     }
   }
 `, {
