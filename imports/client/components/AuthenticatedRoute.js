@@ -24,9 +24,6 @@ const AuthenticatedRoute = ({
         return <div>Bye...</div>;
       }
 
-      console.log('user', user);
-      console.log('routeProps:', routeProps);
-
       return user.id ? (
         <Component user={user} {...routeProps} />
       ) : (
