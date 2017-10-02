@@ -18,7 +18,7 @@ export default () => (
         <Route path="/error" component={ErrorScreen} />
         <Route exact path="/login" component={Login} />
 
-        <div>
+        <main>
           <Switch>
             <Route exact path="/" component={Feed} />
             <AuthenticatedRoute exact path="/bookmarks" component={Bookmarks} />
@@ -26,7 +26,7 @@ export default () => (
             <AuthenticatedRoute path="/profile" component={Profile} />
           </Switch>
           <BottomMenu />
-        </div>
+        </main>
 
         <Redirect to="/error/404" />
       </Switch>

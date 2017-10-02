@@ -2,9 +2,11 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Route, Redirect } from 'react-router-dom';
-import { compose } from 'recompose';
+import { compose, withProps } from 'recompose';
 
 const AuthenticatedRoute = ({
+  exact = false,
+  path,
   component: Component,
   loggingIn,
   loggingOut,
@@ -12,6 +14,8 @@ const AuthenticatedRoute = ({
   ...props,
 }) => (
   <Route
+    exact={exact}
+    path={path}
     render={(routeProps) => {
       if (loggingIn) {
         return <div>Loading...</div>;
@@ -20,8 +24,11 @@ const AuthenticatedRoute = ({
         return <div>Bye...</div>;
       }
 
-      return user ? (
-        <Component user={user} {...props} {...routeProps} />
+      console.log('user', user);
+      console.log('routeProps:', routeProps);
+
+      return user.id ? (
+        <Component user={user} {...routeProps} />
       ) : (
         <Redirect to="/login" />
       );
@@ -30,8 +37,11 @@ const AuthenticatedRoute = ({
 );
 
 export default compose(
-  withTracker(props => ({
-    ...props,
+  withProps(props => {
+    delete props.computedMatch;
+    return props;
+  }),
+  withTracker(() => ({
     loggingIn: Meteor.loggingIn(),
     loggingOut: Meteor.loggingOut(),
     user: { ...Meteor.user(), id: Meteor.userId() },

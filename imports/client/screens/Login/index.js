@@ -60,7 +60,7 @@ const Login = ({ loggingIn, user }) => {
     return <div>Loading...</div>;
   }
 
-  return user ? <Redirect to="/" /> : <LoginForm />;
+  return user.id ? <Redirect to="/" /> : <LoginForm />;
 };
 
 export default withTracker(props => ({
