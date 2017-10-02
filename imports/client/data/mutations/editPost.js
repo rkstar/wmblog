@@ -5,6 +5,9 @@ export default graphql(gql`
   mutation editPost($id: ID!, $post: PostInput!) {
     editPost(id:$id, post: $post) {
       _id
+      title
+      content
+      datePosted
       author {
         _id
         name
