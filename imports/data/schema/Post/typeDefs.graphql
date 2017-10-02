@@ -3,6 +3,7 @@ type Post {
   author: User!
   tags: [Tag]
   likes: [User]
+  bookmarks: [User]
   comments: [Comment]
   title: String!
   content: String!
@@ -26,6 +27,8 @@ extend type Mutation {
   addPost(post: PostInput!): Post!
   editPost(id: ID!, post: PostInput!): Post!
   deletePost(id: ID!): Boolean!
+  likePost(id: ID!): Boolean!
+  unlikePost(id: ID!): Boolean!
   bookmarkPost(id: ID!): Boolean!
   unbookmarkPost(id: ID!): Boolean!
 }

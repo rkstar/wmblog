@@ -14,7 +14,21 @@ export const Post = {
   },
 
   async likes(post, props, context) {
-    return [];
+    const users = Meteor.users.find({
+      likes: { $exists: true },
+      likes: post._id,
+    }).fetch();
+
+    return users.map(user => mapUser(user));
+  },
+
+  async bookmarks(post, props, context) {
+    const users = Meteor.users.find({
+      bookmarks: { $exists: true },
+      bookmarks: post._id,
+    }).fetch();
+
+    return users.map(user => mapUser(user));
   },
 
   async comments(post, props, context) {
@@ -63,18 +77,42 @@ export const Mutation = {
   },
 
   async editPost(__, props, context) {
+    ensureLoggedIn(context);
+
 
   },
 
   async deletePost(__, props, context) {
+    ensureLoggedIn(context);
 
+
+  },
+
+  async likePost(__, props, context) {
+    ensureLoggedIn(context);
+
+    // update posts...
+    // update user...
+  },
+
+  async unlikePost(__, props, context) {
+    ensureLoggedIn(context);
+
+        // update posts...
+    // update user...
   },
 
   async bookmarkPost(__, props, context) {
+    ensureLoggedIn(context);
 
+    // update posts...
+    // update user...
   },
 
   async unbookmarkPost(__, props, context) {
+    ensureLoggedIn(context);
 
+    // update posts..
+    // update user
   },
 };
