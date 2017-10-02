@@ -16,3 +16,9 @@
   margin: 0 .5em;
   border: 1px solid
 }
+
+.fab {
+  position: fixed;
+  bottom: 4.25em;
+  right: .5em;
+}
