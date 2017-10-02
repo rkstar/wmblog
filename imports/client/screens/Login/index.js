@@ -37,13 +37,13 @@ const LoginForm = () => (
         icon={Icons.drawFontIcon(Icons.facebook)}
         onClick={Meteor.loginWithFacebook}
       />
-      <RaisedButton
+      {/* <RaisedButton
         {...buttonProps}
         backgroundColor={Colors.social.github.green}
         label="Sign in with Github"
         icon={Icons.drawFontIcon(Icons.github)}
         onClick={Meteor.loginWithGithub}
-      />
+      /> */}
       <RaisedButton
         {...buttonProps}
         backgroundColor={Colors.social.google.red}
