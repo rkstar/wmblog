@@ -26,14 +26,5 @@ export default graphql(gql`
     variables: {
       id: postId,
     },
-    reducer: (currentData, { type, operationName, result }) => {
-      if ((type === 'APOLLO_MUTATION_RESULT') && (operationName === 'editPost')) {
-        return update(currentData, {
-          $merge: result.data[operationName],
-        });
-      }
-
-      return currentData;
-    }
-  })
-})
+  }),
+});
