@@ -8,7 +8,6 @@ import Feed from './screens/Feed';
 import Bookmarks from './screens/Bookmarks';
 import Likes from './screens/Likes';
 import Profile from './screens/Profile';
-import { WritePost, EditPost } from './screens/Profile';
 import Login from './screens/Login';
 import ErrorScreen from './screens/Error';
 
@@ -17,9 +16,7 @@ const AppRoutes = () => [
     <Route exact path="/" component={Feed} />
     <AuthenticatedRoute exact path="/bookmarks" component={Bookmarks} />
     <AuthenticatedRoute exact path="/likes" component={Likes} />
-    <AuthenticatedRoute exact path="/profile" component={Profile} />
-    <AuthenticatedRoute exact path="/profile/post/write" component={WritePost} />
-    <AuthenticatedRoute path="/profile/post/edit/:id" component={EditPost} />
+    <AuthenticatedRoute path="/profile" component={Profile} />
   </Switch>,
   <BottomMenu key="bottom-menu" />,
 ];
