@@ -9,6 +9,12 @@ export default graphql(gql`
       author {
         name
       }
+      bookmarks {
+        _id
+      }
+      likes {
+        _id
+      }
       datePosted
       title
       content
