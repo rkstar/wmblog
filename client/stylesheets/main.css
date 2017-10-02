@@ -42,4 +42,15 @@
 :global(h1) {
   font-size: 2em;
   font-weight: 700;
+  margin: .5em auto;
+}
+
+:global(h2) {
+  font-size: 1.6em;
+  font-weight: 500;
+  margin: .35em auto;
+}
+
+:global(p) {
+  margin: .5em 0;
 }
