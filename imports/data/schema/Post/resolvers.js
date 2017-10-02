@@ -43,7 +43,7 @@ export const Query = {
     return Posts.findOne({ _id: id });
   },
 
-  async posts(__, { sort = 'DATE', order = 'DESC' }, context) {
+  async posts(__, { userId, sort = 'DATE', order = 'DESC' }, context) {
     const fields = {
       DATE: 'datePosted',
       COMMENTS: 'comments.length',
@@ -52,7 +52,8 @@ export const Query = {
     const options = { sort: {
       [fields[sort]]: (order === 'DESC') ? -1 : 1,
     }};
-    return Posts.find({}, options).fetch();
+    const query = userId ? { _id: userId } : {};
+    return Posts.find(query, options).fetch();
   },
 
   async comments(__, props, context) {

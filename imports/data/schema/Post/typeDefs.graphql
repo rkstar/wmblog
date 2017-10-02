@@ -19,7 +19,7 @@ input PostInput {
 
 extend type Query {
   post(id: ID!): Post!
-  posts(sort: SortOption, order: OrderOption): [Post!]!
+  posts(userId: ID, sort: SortOption, order: OrderOption): [Post!]!
   comments(id: ID!, sort: SortOption, order: OrderOption): [Comment!]!
 }
 
