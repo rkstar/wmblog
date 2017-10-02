@@ -1,0 +1,18 @@
+@value white from '../../../../client/stylesheets/colors.css';
+
+.header {
+  width: 100vw;
+  height: 8em;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: .5em;
+}
+
+.avatar {
+  vertical-align: middle;
+  margin: 0 .5em;
+  border: 1px solid
+}
