@@ -19,7 +19,9 @@ export const Icons = {
   thumbs_down: 'thumb_down',
   thumbs_up: 'thumb_up',
   heart: 'favorite',
+  heart_empty: 'favorite_border',
   bookmark: 'bookmark',
+  bookmark_empty: 'bookmark_border',
   checkmark: 'check',
   options: 'more_vert',
   search: 'search',
@@ -31,11 +33,11 @@ export const Icons = {
   drawHtml(icon, style = {}) {
     return (<i className={icon} style={style} />);
   },
-  drawFontIcon(icon, style = {}) {
+  drawFontIcon(icon, color, style = {}) {
     return icon.includes('fa fa') ? (
-      <FontIcon className={icon} style={style} />
+      <FontIcon className={icon} style={style} color={color} />
     ) : (
-      <FontIcon className="material-icons" style={style}>{icon}</FontIcon>
+      <FontIcon className="material-icons" style={style} color={color}>{icon}</FontIcon>
     );
   },
 };
