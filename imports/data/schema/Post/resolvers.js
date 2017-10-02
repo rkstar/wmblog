@@ -19,7 +19,7 @@ export const Post = {
       likes: post._id,
     }).fetch();
 
-    return users.map(user => mapUser(user));
+    return users ? users.map(user => mapUser(user)) : [];
   },
 
   async bookmarks(post, props, context) {
@@ -28,7 +28,7 @@ export const Post = {
       bookmarks: post._id,
     }).fetch();
 
-    return users.map(user => mapUser(user));
+    return users ? users.map(user => mapUser(user)) : [];
   },
 
   async comments(post, props, context) {
