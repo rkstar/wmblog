@@ -1,7 +1,7 @@
 import React from 'react';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
-import { compose, withState } from 'recompose';
+import { compose, withState, withProps } from 'recompose';
 import { withRouter } from 'react-router-dom';
 import { Icons } from '../../theme/icons';
 
@@ -49,4 +49,20 @@ const BottomNav = ({ selectedNavItem, selectNavItem, history }) => (
 export default compose(
   withRouter,
   withState('selectedNavItem', 'selectNavItem', 0),
+  withProps(props => {
+    const section = props.location.pathname.split('/')[1];
+    switch (section) {
+      case 'bookmarks':
+        return { selectedNavItem: 1 };
+
+      case 'likes':
+        return { selectedNavItem: 2 };
+
+      case 'profile':
+        return { selectedNavItem: 3 };
+
+      default:
+        return { selectedNavItem: 0 };
+    }
+  }),
 )(BottomNav);
