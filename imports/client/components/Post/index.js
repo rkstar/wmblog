@@ -32,11 +32,13 @@ const getImage = () => randomItem([
 
 const getBookmarkIcon = (userId, bookmarks) => {
   const ids = bookmarks.map(user => user._id);
+  console.log('bookmark:', ids);
   return ids.includes(userId) ? Icons.bookmark : Icons.bookmark_empty;
 };
 
 const getHeartIcon = (userId, likes) => {
   const ids = likes.map(user => user._id);
+  console.log('heart:', ids);
   return ids.includes(userId) ? Icons.heart : Icons.heart_empty;
 }
 

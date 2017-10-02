@@ -10,7 +10,6 @@ const Feed = ({ user, data: { loading, posts } }) => loading ? (
 ) : (
   <main>
     <h1>The Latest Stories...</h1>
-    {console.log(posts)}
     {posts.map(post => (
       <Post
         key={post._id}
