@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import {
   Card,
@@ -44,6 +45,7 @@ const getHeartIcon = (userId, likes) => {
 
 const Post = ({
   user,
+  isMine,
   _id,
   title,
   content,
@@ -55,6 +57,7 @@ const Post = ({
   unlikePost,
   bookmarkPost,
   unbookmarkPost,
+  history,
 }) => (
   <article className={classes.post}>
     <Card zDepth={2} className={classes.card}>
@@ -68,19 +71,30 @@ const Post = ({
         <p className={classes.date}>posted {moment(datePosted).format('dddd, MMMM Do YYYY')}</p>
         <p className={classes.byline}>by {author.name}</p>
       </CardText>
-      <CardActions>
-        <IconButton
-          touch
-          onClick={() => console.log('heart this post:', _id)}
-        >
-          {Icons.drawFontIcon(getHeartIcon(user._id, likes), Colors.app.seafoam)}
-        </IconButton>
-        <IconButton
-          touch
-          onClick={() => console.log('bookmark this post:', _id)}
-        >
-          {Icons.drawFontIcon(getBookmarkIcon(user._id, bookmarks), Colors.app.seafoam)}
-        </IconButton>
+      <CardActions style={{ textAlign: 'right' }}>
+        {isMine ? (
+          <IconButton
+            touch
+            onClick={() => history.push(`/profile/post/edit/${_id}`)}
+          >
+            {Icons.drawFontIcon(Icons.edit, Colors.app.seafoam)}
+          </IconButton>
+        ) : [
+          <IconButton
+            key={`like-${_id}`}
+            touch
+            onClick={() => console.log('heart this post:', _id)}
+          >
+            {Icons.drawFontIcon(getHeartIcon(user._id, likes), Colors.app.seafoam)}
+          </IconButton>,
+          <IconButton
+            key={`bookmark-${_id}`}
+            touch
+            onClick={() => console.log('bookmark this post:', _id)}
+          >
+            {Icons.drawFontIcon(getBookmarkIcon(user._id, bookmarks), Colors.app.seafoam)}
+          </IconButton>
+        ]}
       </CardActions>
     </Card>
   </article>
@@ -91,4 +105,5 @@ export default compose(
   unlikePostMutation,
   bookmarkPostMutation,
   unbookmarkPostMutation,
+  withRouter,
 )(Post);

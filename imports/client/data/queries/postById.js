@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import update from 'react-addons-update';
 
 export default graphql(gql`
-  query posts($userId: ID, $sort: SortOption, $order: OrderOption) {
-    posts(userId:$userId sort:$sort, order:$order) {
+  query post($id: ID!) {
+    post(id: $id) {
       _id,
       author {
         name
@@ -21,15 +21,13 @@ export default graphql(gql`
     }
   }
 `, {
-  options: ({ user, filterPostsByUser = false, sort, order }) => ({
+  options: ({ postId }) => ({
     fetchPolicy: 'cache-and-network',
     variables: {
-      userId: filterPostsByUser ? user._id : null,
-      sort,
-      order,
+      id: postId,
     },
     reducer: (currentData, { type, operationName, result }) => {
-      if ((type === 'APOLLO_MUTATION_RESULT') && (operationName === 'deletePost') || (operationName === 'editPost')) {
+      if ((type === 'APOLLO_MUTATION_RESULT') && (operationName === 'editPost')) {
         return update(currentData, {
           $merge: result.data[operationName],
         });
@@ -37,5 +35,5 @@ export default graphql(gql`
 
       return currentData;
     }
-  }),
-});
+  })
+})

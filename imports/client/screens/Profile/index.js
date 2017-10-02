@@ -26,7 +26,12 @@ export default ({ user }) => (
       </h1>
     </header>
     <Switch>
-      <AuthenticatedRoute exact path="/profile" component={Profile} />
+      <AuthenticatedRoute
+        exact
+        path="/profile"
+        filterPostsByUser
+        component={Profile}
+      />
       <AuthenticatedRoute exact path="/profile/post/write" component={WritePost} />
       <AuthenticatedRoute path="/profile/post/edit/:id" component={EditPost} />
     </Switch>

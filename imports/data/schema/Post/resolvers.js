@@ -77,16 +77,22 @@ export const Mutation = {
     return Posts.findOne({ _id: id });
   },
 
-  async editPost(__, props, context) {
+  async editPost(__, { id, post: { title, content } }, context) {
     ensureLoggedIn(context);
 
+    Posts.update({ _id: id }, { $set: {
+      title,
+      content,
+      lastUpdated: new Date(),
+    }});
 
+    return Posts.findOne({ _id: id });
   },
 
-  async deletePost(__, props, context) {
+  async deletePost(__, { id }, context) {
     ensureLoggedIn(context);
 
-
+    return Posts.delete({ _id: id });
   },
 
   async likePost(__, props, context) {

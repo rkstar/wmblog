@@ -4,13 +4,15 @@ import TextField from 'material-ui/TextField';
 import Avatar from 'material-ui/Avatar';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import { compose } from 'recompose';
+import Post from '../../components/Post';
 import editUserMutation from '../../data/mutations/editUser';
-import { Colors } from '/imports/client/theme/colors';
-import { Icons } from '/imports/client/theme/icons';
+import postsQuery from '../../data/queries/posts';
+import { Colors } from '../../theme/colors';
+import { Icons } from '../../theme/icons';
 import classes from './style.css';
 import { inputStyle, floatingLabelStyle } from './style';
 
-const Profile = ({ user, editUser, history }) => (
+const Profile = ({ user, editUser, history, data: { posts, loading } }) => (
   <main>
     <TextField
       floatingLabelText="Would you like to change your name?"
@@ -20,6 +22,17 @@ const Profile = ({ user, editUser, history }) => (
         variables: { user: { name } },
       })}
     />
+    <h2>Your latest posts...</h2>
+    {loading ? (
+      <div>Loading...</div>
+    ) : posts.map(post => (
+      <Post
+        key={post._id}
+        user={user}
+        {...post}
+        isMine
+      />
+    ))}
     <FloatingActionButton
       className={classes.fab}
       backgroundColor={Colors.app.seafoam}
@@ -32,5 +45,6 @@ const Profile = ({ user, editUser, history }) => (
 
 export default compose(
   editUserMutation,
+  postsQuery,
   withRouter,
 )(Profile);
