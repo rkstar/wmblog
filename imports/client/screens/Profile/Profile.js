@@ -27,9 +27,8 @@ const Profile = ({ user, editUser, history, data: { posts, loading } }) => (
       {loading ? (
         <div>Loading...</div>
       ) : posts.map(post => (
-        <article className={classes.post}>
+        <article key={post._id} className={classes.post}>
           <Post
-            key={post._id}
             user={user}
             {...post}
             isMine

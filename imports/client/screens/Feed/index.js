@@ -13,9 +13,8 @@ const Feed = ({ user, data: { loading, posts } }) => loading ? (
     <h1>The Latest Stories...</h1>
     <section className={classes.posts}>
       {posts.map(post => (
-        <article className={classes.post}>
+        <article key={post._id} className={classes.post}>
           <Post
-            key={post._id}
             user={user}
             {...post}
           />
