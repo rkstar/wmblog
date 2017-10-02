@@ -17,14 +17,14 @@ const AuthenticatedRoute = ({
     exact={exact}
     path={path}
     render={(routeProps) => {
-      if (loggingIn || (user && !user.account)) {
+      if (loggingIn || (user._id && !user.account)) {
         return <div>Loading...</div>;
       }
       if (loggingOut) {
         return <div>Bye...</div>;
       }
 
-      return user && user.id && user.account ? (
+      return user && user._id && user.account ? (
         <Component user={user} {...routeProps} />
       ) : (
         <Redirect to="/login" />
