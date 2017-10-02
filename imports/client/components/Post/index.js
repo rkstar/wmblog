@@ -14,6 +14,7 @@ import likePostMutation from '../../data/mutations/likePost';
 import unlikePostMutation from '../../data/mutations/unlikePost';
 import bookmarkPostMutation from '../../data/mutations/bookmarkPost';
 import unbookmarkPostMutation from '../../data/mutations/unbookmarkPost';
+import deletePostMutation from '../../data/mutations/deletePost';
 import IconButton from 'material-ui/IconButton';
 import { Icons } from '../../theme/icons';
 import { Colors } from '../../theme/colors';
@@ -57,6 +58,7 @@ const Post = ({
   unlikePost,
   bookmarkPost,
   unbookmarkPost,
+  deletePost,
   history,
 }) => (
   <article className={classes.post}>
@@ -72,14 +74,24 @@ const Post = ({
         <p className={classes.byline}>by {author.name}</p>
       </CardText>
       <CardActions style={{ textAlign: 'right' }}>
-        {isMine ? (
+        {isMine ? [
           <IconButton
+            key={`edit-${_id}`}
             touch
             onClick={() => history.push(`/profile/post/edit/${_id}`)}
           >
             {Icons.drawFontIcon(Icons.edit, Colors.app.seafoam)}
+          </IconButton>,
+          <IconButton
+            key={`delete-${_id}`}
+            touch
+            onClick={() => deletePost({
+              variables: { id: _id },
+            })}
+          >
+            {Icons.drawFontIcon(Icons.trash, Colors.social.google.red)}
           </IconButton>
-        ) : [
+        ] : [
           <IconButton
             key={`like-${_id}`}
             touch
@@ -105,5 +117,6 @@ export default compose(
   unlikePostMutation,
   bookmarkPostMutation,
   unbookmarkPostMutation,
+  deletePostMutation,
   withRouter,
 )(Post);
