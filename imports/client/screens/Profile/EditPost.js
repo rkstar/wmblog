@@ -57,8 +57,8 @@ const EditPost = ({
 );
 
 const initialState = {
-  title: '',
-  content: '',
+  title: null,
+  content: null,
 };
 
 export default compose(
@@ -66,10 +66,10 @@ export default compose(
   withProps(props => ({
     postId: props.match.params.id,
   })),
-  postByIdQuery,
-  editPostMutation,
   withReducer('state', 'dispatch', (state, action) => ({
     ...state,
     ...action,
   }), initialState),
+  postByIdQuery,
+  editPostMutation,
 )(EditPost);
