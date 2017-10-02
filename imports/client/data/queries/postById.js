@@ -1,6 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import update from 'react-addons-update';
+import update from 'immutability-helper';
 
 export default graphql(gql`
   query post($id: ID!) {
