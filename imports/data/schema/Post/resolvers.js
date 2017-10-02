@@ -92,7 +92,8 @@ export const Mutation = {
   async deletePost(__, { id }, context) {
     ensureLoggedIn(context);
 
-    return Posts.remove({ _id: id });
+    Posts.remove({ _id: id });
+    return id;
   },
 
   async likePost(__, props, context) {

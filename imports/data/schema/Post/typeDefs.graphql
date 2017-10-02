@@ -26,7 +26,7 @@ extend type Query {
 extend type Mutation {
   addPost(post: PostInput!): Post!
   editPost(id: ID!, post: PostInput!): Post!
-  deletePost(id: ID!): Boolean!
+  deletePost(id: ID!): ID!
   likePost(id: ID!): Boolean!
   unlikePost(id: ID!): Boolean!
   bookmarkPost(id: ID!): Boolean!
