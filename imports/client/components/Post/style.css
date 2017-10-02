@@ -1,0 +1,16 @@
+@value seafoam, green, white from '../../../../client/stylesheets/colors.css';
+
+.post {
+  margin: 2em auto;
+}
+
+.date {
+  color: seafoam;
+  font-size: .75em;
+}
+
+.byline {
+  color: green;
+  font-size: .75em;
+  text-shadow: .5px .5px white;
+}

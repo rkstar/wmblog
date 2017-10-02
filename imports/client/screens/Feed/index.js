@@ -1,8 +1,20 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
+import { compose } from 'recompose';
+import PostsQuery from './queries/posts';
+import Post from '../../components/Post';
 
-export default () => Meteor.user() ? (
-  <h1>Welcome back, {Meteor.user().profile.name}!</h1>
+const Feed = ({ data: { loading, posts } }) => loading ? (
+  <div>Loading...</div>
 ) : (
-  <h1>feed goes here...</h1>
+  <main>
+    <h1>The Latest Stories...</h1>
+    {posts.map(post => (
+      <Post key={post._id} {...post} />
+    ))}
+  </main>
 );
+
+export default compose(
+  PostsQuery,
+)(Feed);
