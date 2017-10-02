@@ -16,7 +16,6 @@ export const User = {
   },
 };
 
-
 export const Query = {
   async users(__, props, context) {
 

@@ -29,8 +29,16 @@ export const Query = {
     return Posts.findOne({ _id: id });
   },
 
-  async posts(__, props, context) {
-
+  async posts(__, { sort = 'DATE', order = 'DESC' }, context) {
+    const fields = {
+      DATE: 'datePosted',
+      COMMENTS: 'comments.length',
+      LIKES: 'likes.length',
+    };
+    const options = { sort: {
+      [fields[sort]]: (order === 'DESC') ? -1 : 1,
+    }};
+    return Posts.find({}, options).fetch();
   },
 
   async comments(__, props, context) {
