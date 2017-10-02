@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { withReducer, compose } from 'recompose';
 import { Icons } from '/imports/client/theme/icons';
 import { inputStyle, textareaStyle, hintStyle } from './style';
-import addPostMutation from './mutations/addPost';
+import addPostMutation from '../../data/mutations/addPost';
 
 const WritePost = ({ addPost, dispatch, state }) => (
   <main>

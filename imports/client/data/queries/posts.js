@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import update from 'react-addons-update';
 
 export default graphql(gql`
-  query posts($sort: SortOption, $order: OrderOption) {
-    posts(sort:$sort, order:$order) {
+  query posts($userId: ID, $sort: SortOption, $order: OrderOption) {
+    posts(userId:$userId sort:$sort, order:$order) {
       _id,
       author {
         name
@@ -21,9 +21,10 @@ export default graphql(gql`
     }
   }
 `, {
-  options: ({ sort, order }) => ({
+  options: ({ userId, sort, order }) => ({
     fetchPolicy: 'cache-and-network',
     variables: {
+      userId,
       sort,
       order,
     },

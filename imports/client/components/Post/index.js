@@ -9,10 +9,10 @@ import {
   CardText
 } from 'material-ui/Card';
 import { compose } from 'recompose';
-import likePostMutation from './mutations/likePost';
-import unlikePostMutation from './mutations/unlikePost';
-import bookmarkPostMutation from './mutations/bookmarkPost';
-import unbookmarkPostMutation from './mutations/unbookmarkPost';
+import likePostMutation from '../../data/mutations/likePost';
+import unlikePostMutation from '../../data/mutations/unlikePost';
+import bookmarkPostMutation from '../../data/mutations/bookmarkPost';
+import unbookmarkPostMutation from '../../data/mutations/unbookmarkPost';
 import IconButton from 'material-ui/IconButton';
 import { Icons } from '../../theme/icons';
 import { Colors } from '../../theme/colors';
@@ -32,13 +32,13 @@ const getImage = () => randomItem([
 
 const getBookmarkIcon = (userId, bookmarks) => {
   const ids = bookmarks.map(user => user._id);
-  console.log('bookmark:', ids);
+  // console.log('bookmark:', ids);
   return ids.includes(userId) ? Icons.bookmark : Icons.bookmark_empty;
 };
 
 const getHeartIcon = (userId, likes) => {
   const ids = likes.map(user => user._id);
-  console.log('heart:', ids);
+  // console.log('heart:', ids);
   return ids.includes(userId) ? Icons.heart : Icons.heart_empty;
 }
 

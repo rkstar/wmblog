@@ -2,7 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { compose } from 'recompose';
-import PostsQuery from './queries/posts';
+import PostsQuery from '../../data/queries/posts';
 import Post from '../../components/Post';
 
 const Feed = ({ user, data: { loading, posts } }) => loading ? (
