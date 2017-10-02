@@ -22,3 +22,20 @@
   bottom: 4.25em;
   right: .5em;
 }
+
+@media (min-width: 1280px) {
+  .posts {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 25%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+
+  .post {
+    max-width: 24%;
+  }
+}

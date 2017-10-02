@@ -23,16 +23,20 @@ const Profile = ({ user, editUser, history, data: { posts, loading } }) => (
       })}
     />
     <h2>Your latest posts...</h2>
-    {loading ? (
-      <div>Loading...</div>
-    ) : posts.map(post => (
-      <Post
-        key={post._id}
-        user={user}
-        {...post}
-        isMine
-      />
-    ))}
+    <section className={classes.posts}>
+      {loading ? (
+        <div>Loading...</div>
+      ) : posts.map(post => (
+        <article className={classes.post}>
+          <Post
+            key={post._id}
+            user={user}
+            {...post}
+            isMine
+          />
+        </article>
+      ))}
+    </section>
     <FloatingActionButton
       className={classes.fab}
       backgroundColor={Colors.app.seafoam}
