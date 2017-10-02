@@ -24,7 +24,7 @@ const AuthenticatedRoute = ({
         return <div>Bye...</div>;
       }
 
-      return user.id ? (
+      return user && user.id ? (
         <Component user={user} {...routeProps} />
       ) : (
         <Redirect to="/login" />
