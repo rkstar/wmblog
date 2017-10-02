@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import { withReducer, withProps, compose } from 'recompose';
+import { withReducer, withProps, withPropsOnChange, compose } from 'recompose';
 import { Icons } from '/imports/client/theme/icons';
 import { inputStyle, textareaStyle, hintStyle } from './style';
 import postByIdQuery from '../../data/queries/postById';
@@ -72,4 +72,12 @@ export default compose(
   }), initialState),
   postByIdQuery,
   editPostMutation,
+  withPropsOnChange(['data'], ({ data: { post, loading }, dispatch, state }) => {
+    if (!loading && !state.title && !state.content) {
+      dispatch({
+        title: post.title,
+        content: post.content,
+      });
+    }
+  }),
 )(EditPost);
