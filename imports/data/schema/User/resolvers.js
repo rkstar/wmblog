@@ -1,4 +1,6 @@
 import { Meteor } from 'meteor/meteor';
+import { ensureLoggedIn } from '../';
+import { mapUser } from './';
 
 export const User = {
   async posts(__, props, context) {
@@ -20,8 +22,11 @@ export const Query = {
 
   },
 
-  async user(__, props, context) {
+  async user(__, { id: _id }, context) {
+    ensureLoggedIn(context);
 
+    const user = Meteor.users.findOne({ _id });
+    return mapUser(user);
   },
 
   async me(__, props, context) {
@@ -31,9 +36,7 @@ export const Query = {
 
 export const Mutation = {
   async editUser(__, { user: { name, avatar } }, context) {
-    if (!context.user || !context.user._id) {
-      throw new Error('Unknown user.');
-    }
+    ensureLoggedIn(context);
 
     if (!name && !avatar) {
       return context.user;
@@ -56,8 +59,6 @@ export const Mutation = {
   },
 
   async deleteUser(__, props, context) {
-    if (!context.user || !context.userId) {
-      throw new Error('sorry... you gotta be logged in.');
-    }
+    ensureLoggedIn(context);
   },
 };

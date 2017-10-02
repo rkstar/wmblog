@@ -1,8 +1,7 @@
 type User {
   _id: ID!
   name: String!
-  dateRegistered: DateTime
-  lastUpdated: DateTime
+  createdAt: DateTime
   posts: [Post]
   comments: [Comment]
   likes: [Post]

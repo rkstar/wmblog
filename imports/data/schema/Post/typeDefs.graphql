@@ -5,7 +5,7 @@ type Post {
   likes: [User]
   comments: [Comment]
   title: String!
-  contenxt: String!
+  content: String!
   datePosted: DateTime
   lastUpdated: DateTime
 }

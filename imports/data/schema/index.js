@@ -16,6 +16,12 @@ const domains = [
   Comment,
 ];
 
+export const ensureLoggedIn = context => {
+  if (!context.user || !context.user._id) {
+    throw new Error('Unknown user.');
+  }
+};
+
 export const typeDefs = [globalTypeDefs.loc.source.body, ...domains.map(({ typeDefs }) => typeDefs.loc.source.body)];
 export const resolvers = merge(...domains.map(({ resolvers }) => resolvers));
 export default makeExecutableSchema({ typeDefs, resolvers });

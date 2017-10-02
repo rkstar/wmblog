@@ -1,24 +1,32 @@
+import { Meteor } from 'meteor/meteor';
+import { ensureLoggedIn } from '../';
+import Posts from '../../../collections/Posts';
+import { mapUser } from '../User';
+
 export const Post = {
-  async author(__, props, context) {
-
+  async author(post, props, context) {
+    const user = Meteor.users.findOne({ _id: post.userId });
+    return mapUser(user);
   },
 
-  async tags(__, props, context) {
-
+  async tags(post, props, context) {
+    return [];
   },
 
-  async likes(__, props, context) {
-
+  async likes(post, props, context) {
+    return [];
   },
 
-  async comments(__, props, context) {
-
+  async comments(post, props, context) {
+    return [];
   },
 };
 
 export const Query = {
-  async post(__, props, context) {
+  async post(__, { id }, context) {
+    ensureLoggedIn(context);
 
+    return Posts.findOne({ _id: id });
   },
 
   async posts(__, props, context) {
@@ -31,8 +39,19 @@ export const Query = {
 };
 
 export const Mutation = {
-  async addPost(__, props, context) {
+  async addPost(__, { post: { title, content } }, context) {
+    ensureLoggedIn(context);
 
+    // would do some error checking here normally...
+    const id = Posts.insert({
+      userId: context.user._id,
+      title,
+      content,
+      datePosted: new Date(),
+      lastUpdated: new Date(),
+    });
+
+    return Posts.findOne({ _id: id });
   },
 
   async editPost(__, props, context) {
