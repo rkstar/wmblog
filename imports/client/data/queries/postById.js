@@ -7,6 +7,7 @@ export default graphql(gql`
     post(id: $id) {
       _id,
       author {
+        _id
         name
       }
       bookmarks {
