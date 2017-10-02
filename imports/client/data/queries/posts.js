@@ -30,20 +30,37 @@ export default graphql(gql`
       order,
     },
     reducer: (currentData, { type, operationName, result }) => {
+
+console.log('running reducer:', currentData);
+console.log('type:', type);
+console.log('operationName:', operationName);
+console.log('result:', result);
+
       if ((type === 'APOLLO_MUTATION_RESULT')) {
         const data = result.data[operationName];
         switch (operationName) {
           case 'deletePost':
-            const posts = currentData.posts.reduce((acc, post) => post._id === data ? acc : acc.concat(post), []);
             return update(currentData, {
-              $merge: { posts },
+              posts: { $apply: posts =>
+                posts.reduce((acc, post) =>
+                  post._id === data ? acc : acc.concat(post), []),
+              },
+            });
+
+          case 'addPost':
+            return update(currentData, {
+              posts: { $unshift: [data] },
             });
 
           case 'editPost':
-          case 'addPost':
-            return update(currentData, {
-              $merge: data,
+            const edited = update(currentData, {
+              posts: { $apply: posts =>
+                posts.reduce((acc, post) =>
+                  post._id === data._id ? acc.concat(data) : acc.concat(post), []),
+              },
             });
+            console.log('edited:', edited);
+            return edited;
         }
       }
 
